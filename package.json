@@ -1,0 +1,33 @@
+{
+  "author": "Wilmer Alex QUispe Quispe <q.wilmer.alex@gmail.com>",
+  "name": "insac-cli",
+  "homepage": "https://insac.waquispe.com",
+  "description": "Herramienta de linea de comandos para trabajar con proyectos insac",
+  "keywords": [
+    "insac",
+    "cli"
+  ],
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/waquispe/insac-cli.git"
+  },
+  "main": "index.js",
+  "bin": {
+    "insac": "index.js"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint ./lib"
+  },
+  "engines": {
+    "node": ">=8.4.0"
+  },
+  "dependencies": {
+    "commander": "^2.11.0",
+    "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
+  }
+}
