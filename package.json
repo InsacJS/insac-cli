@@ -24,6 +24,7 @@
     "node": ">=8.4.0"
   },
   "dependencies": {
+    "async": "^2.5.0",
     "commander": "^2.11.0",
     "ncp": "^2.0.0"
   },
