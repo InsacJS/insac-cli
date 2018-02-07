@@ -2,25 +2,24 @@
   "name": "insac-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
-    "start-production": "export NODE_ENV=production && node app.js",
-    "setup": "insac migrate && insac seed",
-    "setup-production": "export NODE_ENV=production && insac migrate && insac seed",
-    "apidoc": "insac apidoc",
-    "test": "mocha --recursive test"
+    "lint": "./node_modules/.bin/eslint ./src"
   },
   "dependencies": {
-    "insac": "^1.0.0"
+    "insac": "^2.0.0"
   },
   "engines": {
-    "node": "^8.4.0"
+    "node": ">=9.5.0"
   },
   "devDependencies": {
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.1",
-    "mocha": "^3.5.0"
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
