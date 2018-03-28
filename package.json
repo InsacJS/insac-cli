@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "commander": "^2.14.0",
-    "handlebars": "^4.0.11",
     "ncp": "^2.0.0"
   }
 }
