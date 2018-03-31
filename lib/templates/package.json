@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "APIDOC=true LOGGER_REQ=true node index.js",
-    "start-sql": "APIDOC=true LOGGER_REQ=true LOGGER_SQL=true node index.js",
+    "start": "APIDOC=true REQUEST_LOG=true node index.js",
+    "start-sql": "APIDOC=true REQUEST_LOG=true SQL_LOG=true node index.js",
     "setup": "SETUP=true node index.js",
     "lint": "eslint index.js src/",
     "test": "NODE_ENV=test node index.js"
