@@ -6,7 +6,11 @@
  "status": "success",
  "message": "La tarea ha sido completada exitosamente.",
  "metadata": {
-   "count": 100
+   "count": 1000,
+   "limit": 30,
+   "page": 2,
+   "start": 31,
+   "end": 60
  },
  "data": "Objeto o Array de objetos"
 }
@@ -17,8 +21,12 @@
 | `status`         | Siempre será `success`. Indica que la tarea se completó con éxito.                                 |
 | `message`        | Describe el resultado obtenido. **Puede mostrarse al cliente** como el título de una notificación. |
 | `metadata`       | Metadatos adicionales. **[OPCIONAL]**                                                              |
-| `metadata.count` | Cantidad de registros existentes. **[OPCIONAL]**                                                   |
-| `data`           | Contiene el resultado.                                                                             |
+| `metadata.count` | Cantidad de registros existentes.                                                                  |
+| `metadata.limit` | Cantidad de archivos por página.                                                                   |
+| `metadata.page`  | Número de página.                                                                                  |
+| `metadata.start` | Posición que ocupa el primer registro devuelto. Contando desde el Nro. 1.                          |
+| `metadata.end`   | Posición que ocupa el último registro devuelto. Contando desde el Nro. 1.                          |
+| `data`           | Resultado.                                                                             |
 
 ## Respuesta con error
 ``` json
@@ -69,9 +77,9 @@
 
 | Filtro    | Descripción                                     | Valor por defecto |
 |-----------|-------------------------------------------------|-------------------|
-| `fields`  | Campos que serán devueltos en el resultado.     | `all`             |
+| `fields`  | Campos que serán devueltos en el resultado.     | `ALL`             |
 | `limit`   | Cantidad de registros por página.               | `50`              |
-| `page`    | Número de página.                               | `0`               |
+| `page`    | Número de página.                               | `1`               |
 | `order`   | Ordena el resultado (`field`, `-field`)         | `<ninguno>`       |
 | `<field>` | Consulta simple (`field=valor`)                 | `<ninguno>`       |
 
