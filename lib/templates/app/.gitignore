@@ -1,5 +1,15 @@
+# Carpetas temporales
+/temp
+/tmp
+
+# Carpetas autogeneradas
 /node_modules
 /public/apidoc
 /docs
-/tmp
 /logs
+
+# Archivos de configuración
+/src/config/app.config.js
+/certs/privateKey.pem
+/certs/publicKey.pem
+/certs/server.csr
