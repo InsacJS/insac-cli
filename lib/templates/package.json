@@ -6,7 +6,9 @@
   "scripts": {
     "start": "APIDOC=true REQUEST_LOG=true node index.js",
     "start-sql": "APIDOC=true REQUEST_LOG=true SQL_LOG=true node index.js",
+    "start-prod": "NODE_ENV=production node index.js",
     "setup": "SETUP=true node index.js",
+    "setup-prod": "NODE_ENV=production SETUP=true node index.js",
     "lint": "eslint index.js src/",
     "test": "NODE_ENV=test node index.js"
   },
