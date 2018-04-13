@@ -13,3 +13,4 @@
 /certs/privateKey.pem
 /certs/publicKey.pem
 /certs/server.csr
+ecosystem.json
