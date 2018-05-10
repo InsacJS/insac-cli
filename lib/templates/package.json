@@ -1,13 +1,10 @@
 {
-  "name": "central",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "APIDOC=true REQUEST_LOG=true node index.js",
-    "start-response": "APIDOC=true REQUEST_LOG=true RESPONSE_LOG=true node index.js",
-    "start-sql": "APIDOC=true REQUEST_LOG=true SQL_LOG=true node index.js",
-    "start-prod": "NODE_ENV=production node index.js",
+    "start": "node index.js",
+    "start-prod": "NODE_ENV=production APIDOC=false node index.js",
     "setup": "SETUP=true node index.js",
     "setup-prod": "NODE_ENV=production SETUP=true node index.js",
     "lint": "eslint index.js src/",
