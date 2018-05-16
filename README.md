@@ -37,8 +37,6 @@ Modo de uso: insac [comando] [opciones]
     add:route <key>           Crea una nueva ruta.
 
     gen:resource <name>       Crea un recurso con el código autogenerado.
-    gen:route  <key>          Crea una ruta con el código autogenerado.
-    gen:output <key>          Crea un component OUTPUT con el código autogenerado.
 
   Opciones:
 
