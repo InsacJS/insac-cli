@@ -1,4 +1,4 @@
-# Insac Cli
+# Insac CLI
 
 Herramienta de línea de comandos para trabajar con proyectos insac.
 

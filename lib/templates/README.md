@@ -2,7 +2,7 @@
 
 ## 2. Requerimientos
 
-- **NodeJS v9.0**     : Entorno de programación de JavaScript.
+- **NodeJS v9.5**     : Entorno de programación de JavaScript.
 - **Yarn v0.24**      : Manejador de dependencias.
 - **PostgreSQL v9.4** : Gestor de base de datos PostgreSQL.
 
