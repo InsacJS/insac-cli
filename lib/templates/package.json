@@ -14,7 +14,8 @@
     "test-integration": "NODE_ENV=test && mocha --recursive test/integration"
   },
   "dependencies": {
-    "moment": "^2.21.0"
+    "moment": "^2.21.0",
+    "insac": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
