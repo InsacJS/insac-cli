@@ -2,7 +2,7 @@
 
 Herramienta de línea de comandos para trabajar con proyectos insac.
 
-# Características
+## Características
 
 - Crea un proyecto.
 - Adiciona nuevos módulos.
@@ -13,7 +13,11 @@ Herramienta de línea de comandos para trabajar con proyectos insac.
 - Adiciona nuevas rutas.
 - Genera recursos de tipo CRUD a partir de modelos.
 
-# Ejemplo
+## Instalación
+
+`npm install -g insac-cli`
+
+## Ejemplo
 ``` bash
 $ insac --help
 
