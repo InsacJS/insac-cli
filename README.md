@@ -1,74 +1,77 @@
-# INSAC - CLI
+# Insac CLI
+
 Herramienta de línea de comandos para trabajar con proyectos insac.
 
-# Requerimientos
-Para ejecutar los comandos `migrate`, `seed` y `apidoc`, se requiere el archivo `.insac.js` que contiene información del proyecto.
+# Características
 
-# Comandos
-- **Migrate:** Crea las tablas a partir de los modelos.
-
-- **Seed:** Adiciona datos por defecto en la base de datos.
-
-- **Apidoc:** Crea la documentación del servicio (APIDOC).
-
-- **Create:** Crea las tablas a partir de los modelos.
-
-# Tecnologías utilizadas
-- NodeJS v8.4.0: Entorno de programación de javascript
-
-- Commander v2.11.0: Interfaz de línea de comandos de NodeJS
-
-# Referencias
-- Commander https://github.com/tj/commander.js
+- Crea un proyecto.
+- Adiciona nuevos módulos.
+- Adiciona nuevos modelos.
+- Adiciona nuevos dao.
+- Adiciona nuevos seeders.
+- Adiciona nuevos recursos.
+- Adiciona nuevas rutas.
+- Genera recursos de tipo CRUD a partir de modelos.
 
 # Ejemplo
 ``` bash
 $ insac --help
 
-   |===============================|
-   |===   I N S A C  -  C L I   ===|
-   |===============================|
+|===============================|
+|===   I N S A C  -  C L I   ===|
+|===============================|
 
-  Modo de uso: insac [comando] [opcion]
+Insac     : v2.0.0
+Insac-cli : v2.0.0
 
-    Comandos:
+Modo de uso: insac [comando] [opciones]
 
-      migrate       Crea todas las tablas de la base de datos.
-      seed          Adiciona datos.
-      apidoc        Crea la documentación (APIDOC).
-      create        Crea un nuevo proyecto.
+  Comandos:
 
-    Opciones:
+    new <name> [description]  Crea un nuevo proyecto.
+    add:module <name>         Crea un nuevo módulo.
+    add:model <name>          Crea un nuevo modelo.
+    add:dao                   Crea un nuevo dao.
+    add:seed                  Crea un nuevo seed.
+    add:resource <name>       Crea un nuevo recurso.
+    add:route <key>           Crea una nueva ruta.
 
-      -v, --version               Muestra el número de versión de la aplicación.
+    gen:resource <name>       Crea un recurso con el código autogenerado.
 
-                                  Ej.: insac --version
+  Opciones:
 
-      -h, --help                  Muestra información acerca del uso de la aplicación.
+    -v, --version             Muestra el número de versión de la herramienta CLI.
+    -h, --help                Muestra información acerca del uso de la herramienta CLI.
+    -f, --force               Fuerza la operación.
+    -e, --example             Incluye un ejemplo.
 
-                                  Ej.:  insac --help
+    -M, --module <value>      Nombre del módulo.
+    -m, --model <value>       Nombre del modelo.
+    -r, --resource <value>    Nombre del recurso.
 
-      -e, --env <value>           Ejecuta un comando para un determinado entorno de ejecución.
-                                  Se utiliza junto con el comando seed.
-                                  El valor por defecto es 'development'.
+    -t, --type <value>        Tipo de modulo, ruta o servicio.
+                                - MODULOS   : RESOURCE (default), SENDGRID_MAIL, MODULE.
+                                - RUTAS     : get (default), getId, create, update, destroy, restore.
 
-                                  Ej.:  insac seed --env production
+    --fields <value>          Atributos de un modelo separados por comas y el tipo de dato por dos puntos.
+                                - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE.
 
-      -p, --models-path <value>   Nombre de una carpeta que se encuentre dentro de la carpeta 'models'.
-                                  Sólo se crearán las tablas que se encuentren dentro de esta carpeta.
-                                  Por defecto es la carpeta donde se encuentran todos los modelos.
+    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT [opcional].
+    --method <value>          Propiedad method de una ruta [opcional].
+    --path <value>            Propiedad path de una ruta [opcional].
+    --description <value>     Propiedad description de una ruta [opcional].
 
-                                  Ej.:  insac migrate --models-path central
+  Ejemplos:
 
-                                  Este comando solamente creará aquellas tablas cuyos modelos
-                                  se encuentren dentro de la carpeta 'models/central'.
+    insac new academico "Sistema de información."
 
-    Ejemplos adicionales:
+    insac add:module central
+    insac add:model libro --fields titulo,cantidad:INTEGER,precio:FLOAT
+    insac add:seed -m libro
+    insac add:resource api/v1/libros -m libro
+    insac add:resource api/v1/custom
+    insac add:route listar -r api/v1/libros
+    insac add:route welcome -r api/v1/custom
 
-        insac migrate
-        insac migrate --models-path central
-        insac seed
-        insac seed --env production
-        insac apidoc
-
+    insac gen:resource api/v1/libros -m libro --level 3
 ```
