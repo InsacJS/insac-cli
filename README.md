@@ -74,8 +74,8 @@ Modo de uso: insac [comando] [opciones]
     insac add:seed -m libro
     insac add:resource api/v1/libros -m libro
     insac add:resource api/v1/custom
-    insac add:route listar -r api/v2/libros
-    insac add:route welcome -r api/v2/custom
+    insac add:route listar -r api/v2/libros -f
+    insac add:route welcome -r api/v2/custom -f
 
-    insac gen:resource api/v1/libros -m libro --level 3
+    insac gen:resource api/v3/libros -m libro --level 3
 ```
