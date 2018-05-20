@@ -9,9 +9,10 @@
       "NODE_ENV"     : "production",
       "DB_USER"      : "postgres",
       "DB_PASS"      : "postgres",
-      "DB_NAME"      : "postgres",
+      "DB_NAME"      : "_example",
       "DB_HOST_NAME" : "localhost",
-      "DB_HOST_PORT" : "5432"
+      "DB_HOST_PORT" : "5432",
+      "APIDOC"       : false
     },
     "instances"  : 1,
     "exec_mode"  : "cluster_mode"
