@@ -9,13 +9,13 @@
     "start-prod": "NODE_ENV=production APIDOC=false node index.js",
     "setup": "SETUP=true node index.js",
     "setup-prod": "NODE_ENV=production SETUP=true node index.js",
-    "lint": "eslint index.js src/",
+    "lint": "\"node_modules/.bin/eslint\" index.js src/",
     "test": "npm run test-unit && npm run test-integration",
-    "test-unit": "NODE_ENV=test && mocha --recursive test/unit",
-    "test-integration": "NODE_ENV=test && mocha --recursive test/integration"
+    "test-unit": "NODE_ENV=test \"node_modules/.bin/mocha\" --recursive test/unit",
+    "test-integration": "NODE_ENV=test \"node_modules/.bin/mocha\" --recursive test/integration"
   },
   "dependencies": {
-    "insac": "^2.0.6"
+    "insac": "^2.0.7"
   },
   "devDependencies": {
     "chai": "^4.1.2",
