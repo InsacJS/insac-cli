@@ -25,22 +25,23 @@ $ insac --help
 |===   I N S A C  -  C L I   ===|
 |===============================|
 
-Insac     : v2.0.0
-Insac-cli : v2.0.0
+insac     : v2.1.0
+insac-cli : v2.1.0
 
 Modo de uso: insac [comando] [opciones]
 
   Comandos:
 
     new <name> [description]  Crea un nuevo proyecto.
-    add:module <name>         Crea un nuevo módulo.
-    add:model <name>          Crea un nuevo modelo.
-    add:dao                   Crea un nuevo dao.
-    add:seed                  Crea un nuevo seed.
-    add:resource <name>       Crea un nuevo recurso.
-    add:route <key>           Crea una nueva ruta.
 
-    gen:resource <name>       Crea un recurso con el código autogenerado.
+    add:module <name>         Adiciona un nuevo módulo.
+    add:model <name>          Adiciona un nuevo modelo.
+    add:dao                   Adiciona un nuevo dao.
+    add:seed                  Adiciona un nuevo seed.
+    add:resource <name>       Adiciona un nuevo recurso.
+    add:route <key>           Adiciona una nueva ruta.
+
+    gen:resource <name>       Genera un recurso (CRUD) con el código autogenerado.
 
   Opciones:
 
@@ -53,9 +54,9 @@ Modo de uso: insac [comando] [opciones]
     -m, --model <value>       Nombre del modelo.
     -r, --resource <value>    Nombre del recurso.
 
-    -t, --type <value>        Tipo de modulo, ruta o servicio.
+    -t, --type <value>        Tipo de modulo o ruta.
                                 - MODULOS   : RESOURCE (default), SENDGRID_MAIL, MODULE.
-                                - RUTAS     : get (default), getId, create, update, destroy, restore.
+                                - RUTAS     : all (default), get, getId, create, update, destroy, restore.
 
     --fields <value>          Atributos de un modelo separados por comas y el tipo de dato por dos puntos.
                                 - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE.

@@ -15,17 +15,17 @@
     "test-integration": "NODE_ENV=test \"node_modules/.bin/mocha\" --recursive test/integration"
   },
   "dependencies": {
-    "insac": "^2.0.7"
+    "insac": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.19.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^5.1.1"
+    "mocha": "^5.2.0"
   },
   "engines": {
     "node": ">=9.5.0"
