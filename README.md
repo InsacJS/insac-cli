@@ -25,8 +25,8 @@ $ insac --help
 |===   I N S A C  -  C L I   ===|
 |===============================|
 
-insac     : v2.1.0
-insac-cli : v2.1.0
+insac     : v2.1.6
+insac-cli : v2.1.4
 
 Modo de uso: insac [comando] [opciones]
 
@@ -59,12 +59,12 @@ Modo de uso: insac [comando] [opciones]
                                 - RUTAS     : all (default), get, getId, create, update, destroy, restore.
 
     --fields <value>          Atributos de un modelo separados por comas y el tipo de dato por dos puntos.
-                                - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE.
+                                - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE. [opcional]
 
-    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT [opcional].
-    --method <value>          Propiedad method de una ruta [opcional].
-    --path <value>            Propiedad path de una ruta [opcional].
-    --description <value>     Propiedad description de una ruta [opcional].
+    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT. [opcional]
+    --method <value>          Propiedad method de una ruta. [opcional]
+    --path <value>            Propiedad path de una ruta. [opcional]
+    --description <value>     Propiedad description de una ruta. [opcional]
 
   Ejemplos:
 

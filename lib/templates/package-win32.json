@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-sql": "set SQL_LOG=true&&node index.js",
+    "start-prod": "set NODE_ENV=production&&set APIDOC=false&&node index.js",
+    "setup": "set SETUP=true&&node index.js",
+    "setup-prod": "set NODE_ENV=production&&set SETUP=true&&node index.js",
+    "lint": "\"node_modules/.bin/eslint\" index.js src",
+    "test": "npm run test-unit && npm run test-integration",
+    "test-unit": "set NODE_ENV=test&&\"node_modules/.bin/mocha\" --recursive test/unit",
+    "test-integration": "set NODE_ENV=test&&\"node_modules/.bin/mocha\" --recursive test/integration"
+  },
+  "dependencies": {
+    "insac": "^2.1.6"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
