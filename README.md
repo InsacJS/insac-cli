@@ -25,8 +25,8 @@ $ insac --help
 |===   I N S A C  -  C L I   ===|
 |===============================|
 
-insac     : v2.1.6
-insac-cli : v2.1.4
+insac     : v2.1.10
+insac-cli : v2.1.5
 
 Modo de uso: insac [comando] [opciones]
 
@@ -66,17 +66,22 @@ Modo de uso: insac [comando] [opciones]
     --path <value>            Propiedad path de una ruta. [opcional]
     --description <value>     Propiedad description de una ruta. [opcional]
 
-  Ejemplos:
+  Ejemplo:
 
-    insac new academico "Sistema de información."
-
-    insac add:module central
+    insac new blog
+    insac add:module api
     insac add:model libro --fields titulo,cantidad:INTEGER,precio:FLOAT
     insac add:seed -m libro
+    insac gen:resource api/v1/libros -m libro
+
+  Ejemplo para crear un nuevo recurso:
+
     insac add:resource api/v1/libros -m libro
     insac add:resource api/v1/custom
+
+  Ejemplo para adicionar rutas a un recurso existente:
+
     insac add:route listar -r api/v1/libros -m libro
     insac add:route welcome -r api/v1/custom
 
-    insac gen:resource api/v2/libros -m libro --level 3
 ```

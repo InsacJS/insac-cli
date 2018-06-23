@@ -27,20 +27,34 @@
     .container {
       margin-top: 60px;
       color: white;
-      font-family: sans-serif;
       text-align: center;
       font-size: 24px;
+      font-family: sans-serif;
     }
-    .title {
-      font-size: 46px;
+    .button {
+      font-size: 24px;
+      padding: 10px;
+      text-align: center;
+      margin: 20px;
+      font-weight: bold;
     }
+    .button a {
+      color: #004d66;
+      background-color: white;
+      font-size: 24px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .button a:hover { color: #0086b3; }
   </style>
   <body>
     <div class="container">
       <div class="logo"></div>
-      <p class="title">Sistema: <strong>{{APP_NAME}}</strong> v1.0.0</p>
+      <h1>Sistema: <strong>{{APP_NAME}}</strong> v1.0.0</h1>
       <p>Activo y funcionando correctamente</p>
-      <br>
+      <div class="button"><a href="./apidoc">APIDOC</a></div>
       <p><strong>insac: </strong>{{INSAC_VERSION}}<br><strong>insac-cli: </strong>{{CLI_VERSION}}</p>
     </div>
   </body>
