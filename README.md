@@ -26,7 +26,7 @@ $ insac --help
 |===============================|
 
 insac     : v2.1.11
-insac-cli : v2.1.7
+insac-cli : v2.1.8
 
 Modo de uso: insac [comando] [opciones]
 
