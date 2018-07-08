@@ -26,7 +26,7 @@ $ insac --help
 |===============================|
 
 insac     : v2.1.11
-insac-cli : v2.1.6
+insac-cli : v2.1.7
 
 Modo de uso: insac [comando] [opciones]
 
@@ -55,26 +55,27 @@ Modo de uso: insac [comando] [opciones]
     -r, --resource <value>    Nombre del recurso.
 
     -t, --type <value>        Tipo de modulo o ruta.
-                                - MODULOS   : RESOURCE (default), SENDGRID_MAIL, MODULE.
-                                - RUTAS     : all (default), get, getId, create, update, destroy, restore.
+                                - MODULOS : RESOURCE (default), SENDGRID_MAIL, MODULE.
+                                - RUTAS   : all (default), get, getId, create, update, destroy, restore.
+    -c, --count <value>       Cantidad de registros a incluir en el fichero de seeds. [opcional] Valor por defecto: 1
 
     --fields <value>          Atributos de un modelo separados por comas y el tipo de dato por dos puntos.
                                 - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE. [opcional]
 
-    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT. [opcional]
-    --method <value>          Propiedad method de una ruta. [opcional]
+    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT. [opcional] Valor por defecto: 0
+    --method <value>          Propiedad method de una ruta. [opcional] Valor por defecto: get
     --path <value>            Propiedad path de una ruta. [opcional]
     --description <value>     Propiedad description de una ruta. [opcional]
 
-  Ejemplo:
+  Ejemplo para crear un nuevo proyecto:
 
     insac new blog
     insac add:module api
-    insac add:model libro --fields titulo,cantidad:INTEGER,precio:FLOAT
+    insac add:model libro --fields titulo,paginas:INTEGER,precio:FLOAT
     insac add:seed -m libro
     insac gen:resource api/v1/libros -m libro
 
-  Ejemplo para crear un nuevo recurso:
+  Ejemplo para adicionar recursos:
 
     insac add:resource api/v1/libros -m libro
     insac add:resource api/v1/custom
@@ -82,6 +83,10 @@ Modo de uso: insac [comando] [opciones]
   Ejemplo para adicionar rutas a un recurso existente:
 
     insac add:route listar -r api/v1/libros -m libro
+    insac add:route listar -r api/v1/libros -m libro -t get,create
     insac add:route welcome -r api/v1/custom
 
+  Ejemplo para crear un recurso en un módulo diferente:
+
+    insac add:resource auth/v1/usuarios -m usuario -M AUTH
 ```
