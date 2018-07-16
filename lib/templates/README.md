@@ -1,9 +1,8 @@
-## 1. Caracteristicas
+## 1. Características
 
 ## 2. Requerimientos
 
 - **NodeJS v8.0**     : Entorno de programación de JavaScript.
-- **Yarn v1.7**       : Manejador de dependencias.
 - **PostgreSQL v9.4** : Gestor de base de datos PostgreSQL.
 
 ## 3. Instalación
