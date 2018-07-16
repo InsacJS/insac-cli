@@ -1545,9 +1545,9 @@
       }
     },
     "insac": {
-      "version": "2.2.1",
-      "resolved": "https://registry.npmjs.org/insac/-/insac-2.2.1.tgz",
-      "integrity": "sha512-EnrKrFLWcivA9eN0W2Oyf7j4jOoPEOT/+OGbSBgdjF6WASvhfi3ub4fmtimJG9jegfdbbuAsvQjXixWvVv3qmw==",
+      "version": "2.2.2",
+      "resolved": "https://registry.npmjs.org/insac/-/insac-2.2.2.tgz",
+      "integrity": "sha512-/XwF0WNNmtZcOXDrxvzq2rEUAqQ6HtaYU2ASs0Bc+nTI5A2JBAIPg+1pCLi0zkrnkkypQJhB51d0ulxXDNNDDg==",
       "requires": {
         "@sendgrid/mail": "^6.2.1",
         "apidoc": "^0.17.6",

@@ -1163,9 +1163,9 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-insac@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/insac/-/insac-2.2.1.tgz#470c2781b48bb3a91c97d8a8d418e2e7cd4832c6"
+insac@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/insac/-/insac-2.2.2.tgz#fa03a517055bca3d76ea8d3d0c073664215b19de"
   dependencies:
     "@sendgrid/mail" "^6.2.1"
     apidoc "^0.17.6"
