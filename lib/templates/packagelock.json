@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "sistema-academico",
   "version": "1.0.0",
   "lockfileVersion": 1,
   "requires": true,
@@ -1545,9 +1545,9 @@
       }
     },
     "insac": {
-      "version": "2.2.2",
-      "resolved": "https://registry.npmjs.org/insac/-/insac-2.2.2.tgz",
-      "integrity": "sha512-/XwF0WNNmtZcOXDrxvzq2rEUAqQ6HtaYU2ASs0Bc+nTI5A2JBAIPg+1pCLi0zkrnkkypQJhB51d0ulxXDNNDDg==",
+      "version": "2.2.3",
+      "resolved": "https://registry.npmjs.org/insac/-/insac-2.2.3.tgz",
+      "integrity": "sha512-UHoRonlynzQjRJnfSHaxzCLShLCHw3BygFe+rI9M3hxVQPagWwLzzyZEItAqTA2Dq9zdtVdPoH623QYTFCx3HA==",
       "requires": {
         "@sendgrid/mail": "^6.2.1",
         "apidoc": "^0.17.6",
@@ -1565,7 +1565,7 @@
         "moment": "^2.22.1",
         "pg": "^7.4.3",
         "response-handler": "^1.2.0",
-        "seed-creator": "^1.1.2",
+        "seed-creator": "^1.2.0",
         "sequelize": "^4.37.10",
         "sequelize-options": "^1.1.0",
         "uuid": "^3.2.1",
@@ -2670,9 +2670,9 @@
       "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
     },
     "seed-creator": {
-      "version": "1.1.2",
-      "resolved": "https://registry.npmjs.org/seed-creator/-/seed-creator-1.1.2.tgz",
-      "integrity": "sha512-VTzVmsPQGgyLUit0pH3ybyUs3cQ3Y3qhYTRljs3mBbR3vm99ZtpKLVZSvDUdVcZUWG6Jt5mBVFERSE5Ttua5vg=="
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/seed-creator/-/seed-creator-1.2.0.tgz",
+      "integrity": "sha512-7Bsz5b9yLGadashe++jtDKyQlB2mDRiQANG+Ihb3waXVS5AUlAnx+9RkTRiRbTe0b5RexZtaknPRbrXV3vLPaA=="
     },
     "semver": {
       "version": "5.3.0",
