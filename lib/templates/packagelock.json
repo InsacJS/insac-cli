@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "blog",
   "version": "1.0.0",
   "lockfileVersion": 1,
   "requires": true,
@@ -1547,9 +1547,9 @@
       }
     },
     "insac": {
-      "version": "2.3.0",
-      "resolved": "https://registry.npmjs.org/insac/-/insac-2.3.0.tgz",
-      "integrity": "sha512-VfIMfbPEMhy2AU/TeN7oo3jclchAZw+hxauKrl1vvprFSmybwq8pClC9ZoHxNUVC9yGi0x6W0V7UsBXjKjoLVQ==",
+      "version": "2.3.1",
+      "resolved": "https://registry.npmjs.org/insac/-/insac-2.3.1.tgz",
+      "integrity": "sha512-/+S+8d3xBzp4xQTeYwMkOA+IP05rbOMs82ol913NpTOd7c92jEQHgT/Vw+Qrcmh39tuhTXuNOZ6c1w4mkczb4g==",
       "requires": {
         "@sendgrid/mail": "^6.2.1",
         "apidoc": "^0.17.6",
