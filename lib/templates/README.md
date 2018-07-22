@@ -35,7 +35,7 @@ Modificar las valores que sean necesarios.
 yarn setup
 
 # producton
-yarn setup-prod
+yarn setup-production
 ```
 
 ## 4. Ejecución
@@ -45,7 +45,7 @@ yarn setup-prod
 yarn start
 
 # production
-yarn start-prod
+yarn start-production
 ```
 
 ## 5. Pruebas
