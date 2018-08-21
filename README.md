@@ -1,93 +1,67 @@
 # Insac CLI
 
-Herramienta de línea de comandos para trabajar con proyectos insac.
+Interfaz de línea de comandos para trabajar con proyectos insac.
 
 ## Características
 
-- Crea un proyecto.
-- Adiciona nuevos módulos.
-- Adiciona nuevos modelos.
-- Adiciona nuevos dao.
-- Adiciona nuevos seeders.
-- Adiciona nuevos recursos.
-- Adiciona nuevas rutas.
+- Crea un proyecto con todos los componentes básicos.
+- Permite la adición y creación de nuevos componentes a un proyecto.
 - Genera recursos de tipo CRUD a partir de modelos.
 
 ## Instalación
 
 `npm install -g insac-cli`
 
-## Ejemplo
+## Ayuda general
+
 ``` bash
 $ insac --help
 
-|===============================|
-|===   I N S A C  -  C L I   ===|
-|===============================|
+Modo de uso: insac [opciones] [commando]
 
-insac     : v2.3.1
-insac-cli : v2.3.1
+Opciones:
 
-Modo de uso: insac [comando] [opciones]
+  -V, --version                          Muestra el número de versión.
+  -h, --help                             Información sobre el modo de uso.
 
-  Comandos:
+Comandos:
 
-    new <name> [description]  Crea un nuevo proyecto.
+  new [options] <appName> <data>         Crea una nueva aplicación.
+  add:module [options] <moduleName>      Adiciona un nuevo módulo.
+  add:model [options] <modelName>        Adiciona un nuevo modelo.
+  add:seed [options] <modelName>         Adiciona un archivo de tipo seed en base a un modelo.
+  add:resource [options] <path>          Adiciona un recurso.
+  add:route [options] <key>              Adiciona una ruta sobre un recurso existente.
+  gen:resource [options] <resourceName>  Genera un recurso (CRUD) con el código autogenerado.
 
-    add:module <name>         Adiciona un nuevo módulo.
-    add:model <name>          Adiciona un nuevo modelo.
-    add:dao                   Adiciona un nuevo dao.
-    add:seed                  Adiciona un nuevo seed.
-    add:resource <name>       Adiciona un nuevo recurso.
-    add:route <key>           Adiciona una nueva ruta.
+Ejemplos:
 
-    gen:resource <name>       Genera un recurso (CRUD) con el código autogenerado.
+  $ insac new blog
+  $ insac add:module api
+  $ insac add:model libro --fields titulo,nro_paginas:INTEGER,precio:FLOAT
+  $ insac add:seed libro
+  $ insac gen:resource api/v1/libros -m libro
+```
 
-  Opciones:
+## Ayuda específica
 
-    -v, --version             Muestra el número de versión de la herramienta CLI.
-    -h, --help                Muestra información acerca del uso de la herramienta CLI.
-    -f, --force               Fuerza la operación.
-    -e, --example             Incluye un ejemplo.
+``` bash
+$ insac new --help
 
-    -M, --module <value>      Nombre del módulo.
-    -m, --model <value>       Nombre del modelo.
-    -r, --resource <value>    Nombre del recurso.
+Modo de uso: new [opciones] <appName>
 
-    -t, --type <value>        Tipo de modulo o ruta.
-                                - MODULOS : RESOURCE (default), SENDGRID_MAIL, MODULE.
-                                - RUTAS   : all (default), get, getId, create, update, destroy, restore.
-    -c, --count <value>       Cantidad de registros a incluir en el fichero de seeds. [opcional] Valor por defecto: 1
+Crea una nueva aplicación.
 
-    --fields <value>          Atributos de un modelo separados por comas y el tipo de dato por dos puntos.
-                                - Tipos: STRING (default), INTEGER, FLOAT, BOOLEAN, DATE. [opcional]
+Opciones:
 
-    --level <value>           Nivel de submodelos a incluir en el componente OUTPUT. [opcional] Valor por defecto: 0
-    --method <value>          Propiedad method de una ruta. [opcional] Valor por defecto: get
-    --path <value>            Propiedad path de una ruta. [opcional]
-    --description <value>     Propiedad description de una ruta. [opcional]
+  -d, --description <string>  Descripción breve del proyecto. (Por defecto: )
+  -f, --force                 Fuerza la creación del proyecto (Elimina el proyecto anterior).
+  -v, --version <number>      Versión del proyecto. (Por defecto: 1.0.0)
+  -h, --help                  Información sobre el modo de uso.
 
-  Ejemplo para crear un nuevo proyecto:
+Ejemplos:
 
-    insac new blog
-    insac add:module api
-    insac add:model libro --fields titulo,paginas:INTEGER,precio:FLOAT
-    insac add:seed -m libro
-    insac gen:resource api/v1/libros -m libro
-    insac gen:resource api/v2/libros -m libro -t get,create
-
-  Ejemplo para adicionar recursos:
-
-    insac add:resource api/v1/libros -m libro
-    insac add:resource api/v1/custom
-
-  Ejemplo para adicionar rutas a un recurso existente:
-
-    insac add:route listar -r api/v1/libros -m libro
-    insac add:route listar -r api/v1/libros -m libro -t get
-    insac add:route welcome -r api/v1/custom
-
-  Ejemplo para crear un recurso en un módulo diferente:
-
-    insac add:resource auth/v1/usuarios -m usuario -M AUTH
+  $ insac new academico
+  $ insac new academico -d "Sistema académico."
+  $ insac new academico -v 2.0.0
 ```

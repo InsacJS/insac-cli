@@ -1,7 +1,7 @@
 {
   "name": "insac-cli",
-  "version": "2.3.1",
-  "description": "Herramienta de línea de comandos para trabajar con proyectos insac.",
+  "version": "3.0.0",
+  "description": "Interfaz de línea de comandos para trabajar con proyectos insac.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -34,11 +34,11 @@
   "homepage": "https://github.com/insacjs/insac-cli#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.19.0",
+    "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^5.2.0"
   },
@@ -46,6 +46,7 @@
     "commander": "^2.14.0",
     "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "winston": "^3.0.0"
   }
 }
