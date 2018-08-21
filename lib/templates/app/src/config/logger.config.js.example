@@ -14,8 +14,8 @@ const LOGGER = {
     // fatal: 0, error: 1, warn: 2, notice: 3, info: 4, verbose: 5, debug: 6, silly: 7
     levels    : ['fatal', 'error', 'info'],
     transport : {
-      maxsize  : 5242880, // Tamaño máximo de los archivos expresado en Bytes.
-      maxFiles : 5        // Cantidad máxima de archivos.
+      maxsize  : 5242880, // Bytes
+      maxFiles : 5
     }
   },
 
