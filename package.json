@@ -2,7 +2,7 @@
   "name": "insac-cli",
   "version": "3.0.0",
   "description": "Interfaz de línea de comandos para trabajar con proyectos insac.",
-  "main": "index.js",
+  "main": "insac.js",
   "directories": {
     "lib": "lib"
   },
@@ -13,7 +13,7 @@
     "lint": "./node_modules/.bin/eslint ./lib ./example/app/src ./test"
   },
   "bin": {
-    "insac": "index.js"
+    "insac": "insac.js"
   },
   "repository": {
     "type": "git",
