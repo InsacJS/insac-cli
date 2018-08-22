@@ -5,6 +5,7 @@ tmp
 *.tmp
 
 # Carpetas autogeneradas
+/test/integration/app
 public
 docs
 
