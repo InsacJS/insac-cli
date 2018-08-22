@@ -18,7 +18,8 @@ describe('\n - Prueba de comandos\n', () => {
       expect(result.includes('insac     :')).to.equal(true)
       expect(result.includes('insac-cli :')).to.equal(true)
     })
-    it(`Comando 'new app'`, async () => {
+
+    it(`Comando new app`, async () => {
       await util.cmd(`rm -rf app`, __dirname)
       const result = await execute(`new app`)
       expect(result.includes('creado exitosamente')).to.equal(true)
@@ -42,7 +43,8 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('app/package.json')
       verifyFile('app/README.md')
     })
-    it(`Comando 'new app --force'`, async () => {
+
+    it(`Comando new app --force`, async () => {
       let result = await execute(`new app`).catch(e => {
         expect(e.includes(`El proyecto 'app' ya existe`)).to.equal(true)
       })
@@ -51,7 +53,8 @@ describe('\n - Prueba de comandos\n', () => {
       // console.log(result)
       expect(result.includes('creado exitosamente')).to.equal(true)
     })
-    it(`Comando 'new app --description --project-version'`, async () => {
+
+    it(`Comando new app --description --project-version`, async () => {
       await util.cmd(`rm -rf app`, __dirname)
       let result = await execute(`new app --description "Descripción personalizada" --project-version 1.2.3`)
       expect(result.includes('creado exitosamente')).to.equal(true)
@@ -59,7 +62,8 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('app/package.json', `"description": "Descripción personalizada"`, true)
       verifyFile('app/package.json', `"version": "1.2.3"`, true)
     })
-    it('Comando add:module RESOURCE', async () => {
+
+    it('Comando add:module', async () => {
       workspacePath = path.resolve(__dirname, 'app')
       cli           = 'node ../../../insac.js'
       const result = await execute(`add:module api`)
@@ -69,86 +73,216 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('src/modules/API/api.module.js')
       verifyFile('src/app.js', `service.addModule('API')`, true)
     })
+
+    it('Comando add:module --force', async () => {
+      let result = await execute(`add:module api`).catch(e => {
+        expect(e.includes(`El módulo 'api' ya existe`)).to.equal(true)
+      })
+      expect(result).to.be.a('undefined')
+      result = await execute(`add:module api --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+    })
+
     it('Comando add:model', async () => {
-      const result = await execute(`add:model libro --fields titulo,paginas:INTEGER,precio:FLOAT`)
+      const result = await execute(`add:model libro`)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      const DAO_PATH = path.resolve(workspacePath, 'src/modules/API/dao/libro.dao.js')
+      expect(util.isFile(DAO_PATH)).to.equal(true)
+      // console.log(result)
+      verifyFile('src/modules/API/models/libro.model.js')
+      verifyFile('src/modules/API/models/libro.model.js', `// Ejemplo.-`, false)
+      verifyFile('src/modules/API/dao/libro.dao.js')
+    })
+
+    it('Comando add:model --force', async () => {
+      let result = await execute(`add:model libro`).catch(e => {
+        expect(e.includes(`El modelo 'libro' ya existe`)).to.equal(true)
+      })
+      expect(result).to.be.a('undefined')
+      result = await execute(`add:model libro --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+    })
+
+    it('Comando add:model --fields --example', async () => {
+      const result = await execute(`add:model libro --fields titulo,paginas:INTEGER,precio:FLOAT --force --example`)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
       verifyFile('src/modules/API/models/libro.model.js')
+      verifyFile('src/modules/API/models/libro.model.js', `titulo: Field.STRING`, true)
+      verifyFile('src/modules/API/models/libro.model.js', `paginas: Field.INTEGER`, true)
+      verifyFile('src/modules/API/models/libro.model.js', `precio: Field.FLOAT`, true)
+      verifyFile('src/modules/API/models/libro.model.js', `// Ejemplo.-`, true)
       verifyFile('src/modules/API/dao/libro.dao.js')
     })
+
     it('Comando add:seed', async () => {
       const result = await execute(`add:seed libro`)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
-      verifyFile('src/modules/API/seeders/libro.seed.js')
+      verifyFile('src/modules/API/seeders/libro.seed.js', `for (let i = 1; i <= 1; i++)`, true)
     })
+
+    it('Comando add:seed --force', async () => {
+      let result = await execute(`add:seed libro`).catch(e => {
+        expect(e.includes(`El seed 'libro' ya existe`)).to.equal(true)
+      })
+      expect(result).to.be.a('undefined')
+      result = await execute(`add:seed libro --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+    })
+
+    it('Comando add:seed --records', async () => {
+      let result = await execute(`add:seed libro --force --records 10`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('src/modules/API/seeders/libro.seed.js', `for (let i = 1; i <= 10; i++)`, true)
+    })
+
     it('Comando add:resource', async () => {
-      const result = await execute(`add:resource api/v1/custom`)
+      let result = await execute(`add:resource api/v1/libros`)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
-      verifyDir('src/modules/API/resources/api/v1/custom')
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.get', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.getId', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.create', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.update', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.destroy', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.restore', false)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.input.js')
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.middleware.js')
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.output.js')
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.route.js')
+      verifyDir('src/modules/API/resources/api/v1/libros')
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js')
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.input.js')
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.output.js')
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.middleware.js')
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.get', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.getId', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.create', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.update', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.destroy', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.restore', false)
+
+      result = await execute(`add:resource custom`)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      // console.log(result)
+      verifyDir('src/modules/API/resources/custom')
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.get', false)
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.getId', false)
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.create', false)
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.update', false)
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.destroy', false)
+      verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.restore', false)
+      verifyFile('src/modules/API/resources/custom/custom.input.js')
+      verifyFile('src/modules/API/resources/custom/custom.middleware.js')
+      verifyFile('src/modules/API/resources/custom/custom.output.js')
+      verifyFile('src/modules/API/resources/custom/custom.route.js')
     })
-    it('Comando add:route por defecto', async () => {
-      const result = await execute(`add:route get -r api/v1/custom`)
+
+    it('Comando add:resource --force', async () => {
+      let result = await execute(`add:resource api/v1/libros`).catch(e => {
+        expect(e.includes(`El recurso 'api/v1/libros' ya existe`)).to.equal(true)
+      })
+      expect(result).to.be.a('undefined')
+      result = await execute(`add:resource api/v1/libros --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyDir('src/modules/API/resources/api/v1/libros')
+    })
+
+    it('Comando add:route --resource', async () => {
+      const result = await execute(`add:route obtener --resource api/v1/libros`)
       expect(result.includes('adicionada exitosamente')).to.equal(true)
       // console.log(result)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.controller.js', 'CONTROLLER.get', true)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.input.js', 'INPUT.get', true)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.middleware.js', 'MIDDLEWARE.get', true)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.output.js', 'OUTPUT.get', true)
-      verifyFile('src/modules/API/resources/api/v1/custom/custom.route.js', 'ROUTE.get', true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', 'ROUTE.obtener', true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.input.js', 'INPUT.obtener', true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.output.js', 'OUTPUT.obtener', true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.middleware.js', 'MIDDLEWARE.obtener', true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.obtener', true)
+
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.output.js', 'Field.group(app.API.models', false)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.output.js', 'Field.group(null', true)
+
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', `path        : '/api/v1/libros/obtener'`, true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', `method      : 'get'`, true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', `version     : 1`, true)
+      verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', `description : ''`, true)
     })
-    it('Comando add:route con tipo de ruta', async () => {
-      let result = await execute(`add:resource api/v1/aaa`)
+
+    it('Comando add:route --resource --path --model --method --route-version --description', async () => {
+      let result = await execute(`add:resource abcd`)
       // console.log(result)
-      result = await execute(`add:route create -r api/v1/aaa -t post`)
+      result = await execute(`add:route crear --resource abcd --path /custom/path --model libro --method post --route-version 3 --description "ABCD"`)
       expect(result.includes('adicionada exitosamente')).to.equal(true)
       // console.log(result)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.get', false)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.getId', false)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.create', true)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.update', false)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.destroy', false)
-      verifyFile('src/modules/API/resources/api/v1/aaa/aaa.controller.js', 'CONTROLLER.restore', false)
+      verifyFile('src/modules/API/resources/abcd/abcd.route.js', 'ROUTE.crear', true)
+      verifyFile('src/modules/API/resources/abcd/abcd.input.js', 'INPUT.crear', true)
+      verifyFile('src/modules/API/resources/abcd/abcd.output.js', 'OUTPUT.crear', true)
+      verifyFile('src/modules/API/resources/abcd/abcd.middleware.js', 'MIDDLEWARE.crear', true)
+      verifyFile('src/modules/API/resources/abcd/abcd.controller.js', 'CONTROLLER.crear', true)
+
+      verifyFile('src/modules/API/resources/abcd/abcd.output.js', 'Field.group(app.API.models', true)
+      verifyFile('src/modules/API/resources/abcd/abcd.output.js', 'Field.group(null', false)
+
+      verifyFile('src/modules/API/resources/abcd/abcd.route.js', `path        : '/custom/path'`, true)
+      verifyFile('src/modules/API/resources/abcd/abcd.route.js', `method      : 'post'`, true)
+      verifyFile('src/modules/API/resources/abcd/abcd.route.js', `version     : 3`, true)
+      verifyFile('src/modules/API/resources/abcd/abcd.route.js', `description : 'ABCD'`, true)
     })
-    it('Comando gen:resource con todas las rutas', async () => {
-      const result = await execute(`gen:resource api/v1/libros -m libro`)
+
+    it('Comando gen:resource --model', async () => {
+      const result = await execute(`gen:resource api/v2/libros --model libro`)
       expect(result.includes('generado exitosamente')).to.equal(true)
       // console.log(result)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.get', true)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.getId', true)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.create', true)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.update', true)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.destroy', true)
-      verifyFile('src/modules/API/resources/api/v1/libros/libro.controller.js', 'CONTROLLER.restore', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.route.js')
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.input.js')
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.output.js')
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.middleware.js')
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js')
+
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.route.js', `version     : 2`, true)
+
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.get', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.getId', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.create', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.update', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.destroy', true)
+      verifyFile('src/modules/API/resources/api/v2/libros/libros.controller.js', 'CONTROLLER.restore', true)
     })
-    it('Comando gen:resource con algunas rutas', async () => {
-      const result = await execute(`gen:resource api/v2/libros -m libro -t get,create`)
+
+    it('Comando gen:resource --model --force', async () => {
+      let result = await execute(`gen:resource api/v2/libros --model libro`).catch(e => {
+        expect(e.includes(`El recurso 'api/v2/libros' ya existe`)).to.equal(true)
+      })
+      expect(result).to.be.a('undefined')
+      result = await execute(`gen:resource api/v2/libros --model libro --force`)
+      // console.log(result)
+      expect(result.includes('generado exitosamente')).to.equal(true)
+      verifyDir('src/modules/API/resources/api/v2/libros')
+    })
+
+    it('Comando gen:resource --model --level --type --resource-version', async () => {
+      const result = await execute(`gen:resource api/v3/libros --model libro --level 1 --type get,create --resource-version 5`)
       expect(result.includes('generado exitosamente')).to.equal(true)
       // console.log(result)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.get', true)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.getId', false)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.create', true)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.update', false)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.destroy', false)
-      verifyFile('src/modules/API/resources/api/v2/libros/libro.controller.js', 'CONTROLLER.restore', false)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js')
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.input.js')
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.output.js')
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.middleware.js')
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.controller.js')
+
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', `version     : 5`, true)
+
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.get', true)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.getId', false)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.create', true)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.update', false)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.destroy', false)
+      verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js', 'ROUTE.restore', false)
     })
+
     it('Prueba la instalación del servicio', async () => {
       updateDatabaseConfig()
       clearEnv()
-      await util.cmd(`npm run setup`, workspacePath).catch(e => {
+      const result = await util.cmd(`npm run setup`, workspacePath).catch(e => {
         console.log(e)
       })
+      // console.log(result)
+      expect(result).to.be.an('string')
     })
   })
 })
