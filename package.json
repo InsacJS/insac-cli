@@ -1,6 +1,6 @@
 {
   "name": "insac-cli",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Interfaz de línea de comandos para trabajar con proyectos insac.",
   "main": "insac.js",
   "directories": {
