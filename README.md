@@ -17,30 +17,35 @@ Interfaz de línea de comandos para trabajar con proyectos insac.
 ``` bash
 $ insac --help
 
-Modo de uso: insac [opciones] [commando]
+  Modo de uso: insac [opciones] [commando]
 
-Opciones:
+  Opciones:
 
-  -V, --version                          Muestra el número de versión.
-  -h, --help                             Información sobre el modo de uso.
+    -V, --version                          Muestra el número de versión.
+    -h, --help                             Información sobre el modo de uso.
 
-Comandos:
+  Comandos:
 
-  new [options] <appName> <data>         Crea una nueva aplicación.
-  add:module [options] <moduleName>      Adiciona un nuevo módulo.
-  add:model [options] <modelName>        Adiciona un nuevo modelo.
-  add:seed [options] <modelName>         Adiciona un archivo de tipo seed en base a un modelo.
-  add:resource [options] <path>          Adiciona un recurso.
-  add:route [options] <key>              Adiciona una ruta sobre un recurso existente.
-  gen:resource [options] <resourceName>  Genera un recurso (CRUD) con el código autogenerado.
+    new [options] <appName>                Crea una nueva aplicación.
+    add:module [options] <moduleName>      Adiciona un nuevo módulo.
+    add:model [options] <modelName>        Adiciona un nuevo modelo.
+    add:seed [options] <modelName>         Adiciona un archivo de tipo seed en base a un modelo.
+    add:resource [options] <path>          Adiciona un recurso.
+    add:route [options] <key>              Adiciona una ruta sobre un recurso existente.
+    gen:resource [options] <resourceName>  Genera un recurso (CRUD) con el código autogenerado.
 
-Ejemplos:
+  Ejemplos:
 
-  $ insac new blog
-  $ insac add:module api
-  $ insac add:model libro --fields titulo,nro_paginas:INTEGER,precio:FLOAT
-  $ insac add:seed libro
-  $ insac gen:resource api/v1/libros -m libro
+     $ insac new blog
+     $ insac add:module api
+     $ insac add:model libro --fields titulo,nro_paginas:INTEGER,precio:FLOAT
+     $ insac add:seed libro
+     $ insac gen:resource api/v1/libros -m libro
+
+  Modo de uso de un comando específico:
+
+     $ insac new --help
+     $ insac add:module --help
 ```
 
 ## Ayuda específica
@@ -48,20 +53,20 @@ Ejemplos:
 ``` bash
 $ insac new --help
 
-Modo de uso: new [opciones] <appName>
+  Modo de uso: new [opciones] <appName>
 
-Crea una nueva aplicación.
+  Crea una nueva aplicación.
 
-Opciones:
+  Opciones:
 
-  -d, --description <string>  Descripción breve del proyecto. (Por defecto: )
-  -f, --force                 Fuerza la creación del proyecto (Elimina el proyecto anterior).
-  -v, --version <number>      Versión del proyecto. (Por defecto: 1.0.0)
-  -h, --help                  Información sobre el modo de uso.
+    -d, --description <string>      Descripción breve del proyecto.
+    -f, --force                     Fuerza la creación del proyecto (Elimina el proyecto si existe).
+    -v, --project-version <string>  Versión del proyecto. [Valor por defecto: 1.0.0]
+    -h, --help                      Información sobre el modo de uso.
 
-Ejemplos:
+  Ejemplos:
 
-  $ insac new academico
-  $ insac new academico -d "Sistema académico."
-  $ insac new academico -v 2.0.0
+     $ insac new academico
+     $ insac new academico -d "Sistema académico."
+     $ insac new academico -v 2.0.0
 ```
