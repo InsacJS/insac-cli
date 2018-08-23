@@ -22,8 +22,8 @@ describe('\n - Prueba de comandos\n', () => {
     it(`Comando new app`, async () => {
       await util.cmd(`rm -rf app`, __dirname)
       const result = await execute(`new app`)
-      expect(result.includes('creado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('creado exitosamente')).to.equal(true)
       verifyDir('app')
       verifyDir('app/src')
       verifyDir('app/src/config')
@@ -45,10 +45,9 @@ describe('\n - Prueba de comandos\n', () => {
     })
 
     it(`Comando new app --force`, async () => {
-      let result = await execute(`new app`).catch(e => {
-        expect(e.includes(`El proyecto 'app' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`new app`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el proyecto 'app'`)).to.equal(true)
       result = await execute(`new app --force`)
       // console.log(result)
       expect(result.includes('creado exitosamente')).to.equal(true)
@@ -57,8 +56,8 @@ describe('\n - Prueba de comandos\n', () => {
     it(`Comando new app --description --project-version`, async () => {
       await util.cmd(`rm -rf app`, __dirname)
       let result = await execute(`new app --description "Descripción personalizada" --project-version 1.2.3`)
-      expect(result.includes('creado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('creado exitosamente')).to.equal(true)
       verifyFile('app/package.json', `"description": "Descripción personalizada"`, true)
       verifyFile('app/package.json', `"version": "1.2.3"`, true)
     })
@@ -67,18 +66,17 @@ describe('\n - Prueba de comandos\n', () => {
       workspacePath = path.resolve(__dirname, 'app')
       cli           = 'node ../../../insac.js'
       const result = await execute(`add:module api`)
-      expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
       verifyDir('src/modules/API')
       verifyFile('src/modules/API/api.module.js')
       verifyFile('src/app.js', `service.addModule('API')`, true)
     })
 
     it('Comando add:module --force', async () => {
-      let result = await execute(`add:module api`).catch(e => {
-        expect(e.includes(`El módulo 'api' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`add:module api`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el módulo 'api'`)).to.equal(true)
       result = await execute(`add:module api --force`)
       // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
@@ -86,20 +84,19 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando add:model', async () => {
       const result = await execute(`add:model libro`)
+      // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
       const DAO_PATH = path.resolve(workspacePath, 'src/modules/API/dao/libro.dao.js')
       expect(util.isFile(DAO_PATH)).to.equal(true)
-      // console.log(result)
       verifyFile('src/modules/API/models/libro.model.js')
       verifyFile('src/modules/API/models/libro.model.js', `// Ejemplo.-`, false)
       verifyFile('src/modules/API/dao/libro.dao.js')
     })
 
     it('Comando add:model --force', async () => {
-      let result = await execute(`add:model libro`).catch(e => {
-        expect(e.includes(`El modelo 'libro' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`add:model libro`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el modelo 'libro'`)).to.equal(true)
       result = await execute(`add:model libro --force`)
       // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
@@ -107,8 +104,8 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando add:model --fields --example', async () => {
       const result = await execute(`add:model libro --fields titulo,paginas:INTEGER,precio:FLOAT --force --example`)
-      expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
       verifyFile('src/modules/API/models/libro.model.js')
       verifyFile('src/modules/API/models/libro.model.js', `titulo: Field.STRING`, true)
       verifyFile('src/modules/API/models/libro.model.js', `paginas: Field.INTEGER`, true)
@@ -119,16 +116,15 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando add:seed', async () => {
       const result = await execute(`add:seed libro`)
-      expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
       verifyFile('src/modules/API/seeders/libro.seed.js', `for (let i = 1; i <= 1; i++)`, true)
     })
 
     it('Comando add:seed --force', async () => {
-      let result = await execute(`add:seed libro`).catch(e => {
-        expect(e.includes(`El seed 'libro' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`add:seed libro`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el seed 'libro'`)).to.equal(true)
       result = await execute(`add:seed libro --force`)
       // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
@@ -143,8 +139,8 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando add:resource', async () => {
       let result = await execute(`add:resource api/v1/libros`)
-      expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
       verifyDir('src/modules/API/resources/api/v1/libros')
       verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js')
       verifyFile('src/modules/API/resources/api/v1/libros/libros.input.js')
@@ -158,8 +154,8 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('src/modules/API/resources/api/v1/libros/libros.controller.js', 'CONTROLLER.restore', false)
 
       result = await execute(`add:resource custom`)
-      expect(result.includes('adicionado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
       verifyDir('src/modules/API/resources/custom')
       verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.get', false)
       verifyFile('src/modules/API/resources/custom/custom.controller.js', 'CONTROLLER.getId', false)
@@ -174,10 +170,9 @@ describe('\n - Prueba de comandos\n', () => {
     })
 
     it('Comando add:resource --force', async () => {
-      let result = await execute(`add:resource api/v1/libros`).catch(e => {
-        expect(e.includes(`El recurso 'api/v1/libros' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`add:resource api/v1/libros`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el recurso 'api/v1/libros'`)).to.equal(true)
       result = await execute(`add:resource api/v1/libros --force`)
       // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
@@ -186,8 +181,8 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando add:route --resource', async () => {
       const result = await execute(`add:route obtener --resource api/v1/libros`)
-      expect(result.includes('adicionada exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionada exitosamente')).to.equal(true)
       verifyFile('src/modules/API/resources/api/v1/libros/libros.route.js', 'ROUTE.obtener', true)
       verifyFile('src/modules/API/resources/api/v1/libros/libros.input.js', 'INPUT.obtener', true)
       verifyFile('src/modules/API/resources/api/v1/libros/libros.output.js', 'OUTPUT.obtener', true)
@@ -207,8 +202,8 @@ describe('\n - Prueba de comandos\n', () => {
       let result = await execute(`add:resource abcd`)
       // console.log(result)
       result = await execute(`add:route crear --resource abcd --path /custom/path --model libro --method post --route-version 3 --description "ABCD"`)
-      expect(result.includes('adicionada exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('adicionada exitosamente')).to.equal(true)
       verifyFile('src/modules/API/resources/abcd/abcd.route.js', 'ROUTE.crear', true)
       verifyFile('src/modules/API/resources/abcd/abcd.input.js', 'INPUT.crear', true)
       verifyFile('src/modules/API/resources/abcd/abcd.output.js', 'OUTPUT.crear', true)
@@ -226,8 +221,8 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando gen:resource --model', async () => {
       const result = await execute(`gen:resource api/v2/libros --model libro`)
-      expect(result.includes('generado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('generado exitosamente')).to.equal(true)
       verifyFile('src/modules/API/resources/api/v2/libros/libros.route.js')
       verifyFile('src/modules/API/resources/api/v2/libros/libros.input.js')
       verifyFile('src/modules/API/resources/api/v2/libros/libros.output.js')
@@ -245,10 +240,9 @@ describe('\n - Prueba de comandos\n', () => {
     })
 
     it('Comando gen:resource --model --force', async () => {
-      let result = await execute(`gen:resource api/v2/libros --model libro`).catch(e => {
-        expect(e.includes(`El recurso 'api/v2/libros' ya existe`)).to.equal(true)
-      })
-      expect(result).to.be.a('undefined')
+      let result = await execute(`gen:resource api/v2/libros --model libro`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el recurso 'api/v2/libros'`)).to.equal(true)
       result = await execute(`gen:resource api/v2/libros --model libro --force`)
       // console.log(result)
       expect(result.includes('generado exitosamente')).to.equal(true)
@@ -257,8 +251,8 @@ describe('\n - Prueba de comandos\n', () => {
 
     it('Comando gen:resource --model --level --type --resource-version', async () => {
       const result = await execute(`gen:resource api/v3/libros --model libro --level 1 --type get,create --resource-version 5`)
-      expect(result.includes('generado exitosamente')).to.equal(true)
       // console.log(result)
+      expect(result.includes('generado exitosamente')).to.equal(true)
       verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js')
       verifyFile('src/modules/API/resources/api/v3/libros/libros.input.js')
       verifyFile('src/modules/API/resources/api/v3/libros/libros.output.js')
@@ -281,8 +275,7 @@ describe('\n - Prueba de comandos\n', () => {
       const result = await util.cmd(`npm run setup`, workspacePath).catch(e => {
         console.log(e)
       })
-      // console.log(result)
-      expect(result).to.be.an('string')
+      expect(result.includes(`La aplicación ha sido instalada con éxito.`)).to.equal(true)
     })
   })
 })
