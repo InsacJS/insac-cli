@@ -128,11 +128,11 @@ describe('\n - Prueba de comandos\n', () => {
       expect(result.includes('adicionado exitosamente')).to.equal(true)
     })
 
-    it('Comando add:seed --records', async () => {
-      let result = await execute(`add:seed libro --force --records 10`)
+    it('Comando add:seed --records --production', async () => {
+      let result = await execute(`add:seed libro --force --records 10 --production`)
       // console.log(result)
       expect(result.includes('adicionado exitosamente')).to.equal(true)
-      verifyFile('src/modules/API/seeders/libro.seed.js', `for (let i = 1; i <= 10; i++)`, true)
+      verifyFile('src/modules/API/seeders/production/libro.seed.js', `for (let i = 1; i <= 10; i++)`, true)
     })
 
     it('Comando add:resource', async () => {
