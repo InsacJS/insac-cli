@@ -37,8 +37,6 @@ describe('\n - Prueba de comandos\n', () => {
       verifyDir('app/test')
       verifyFile('app/.eslintrc.js')
       verifyFile('app/.gitignore')
-      verifyFile('app/ecosystem.config.json')
-      verifyFile('app/ecosystem.config.json.example')
       verifyFile('app/index.js')
       verifyFile('app/package.json')
       verifyFile('app/README.md')
@@ -249,8 +247,8 @@ describe('\n - Prueba de comandos\n', () => {
       verifyDir('src/modules/API/resources/api/v2/libros')
     })
 
-    it('Comando gen:resource --model --level --type --resource-version', async () => {
-      const result = await execute(`gen:resource api/v3/libros --model libro --level 1 --type get,create --resource-version 5`)
+    it('Comando gen:resource --model --output-depth --type --resource-version', async () => {
+      const result = await execute(`gen:resource api/v3/libros --model libro --output-depth 1 --type get,create --resource-version 5`)
       // console.log(result)
       expect(result.includes('generado exitosamente')).to.equal(true)
       verifyFile('src/modules/API/resources/api/v3/libros/libros.route.js')
@@ -272,10 +270,21 @@ describe('\n - Prueba de comandos\n', () => {
     it('Prueba la instalación del servicio', async () => {
       updateDatabaseConfig()
       clearEnv()
+      process.env.LISTEN = 'false'
       const result = await util.cmd(`npm run setup`, workspacePath).catch(e => {
         console.log(e)
       })
       expect(result.includes(`La aplicación ha sido instalada con éxito.`)).to.equal(true)
+    })
+
+    it('Prueba la ejecución del servicio', async () => {
+      updateDatabaseConfig()
+      clearEnv()
+      process.env.LISTEN = 'false'
+      const result = await util.cmd(`npm run start`, workspacePath).catch(e => {
+        console.log(e)
+      })
+      expect(result.includes(`La aplicación ha sido cargada con éxito.`)).to.equal(true)
     })
   })
 })
@@ -324,4 +333,5 @@ function clearEnv () {
   delete process.env.LOGGER
   delete process.env.SETUP
   delete process.env.START
+  delete process.env.LISTEN
 }
