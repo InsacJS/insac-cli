@@ -32,6 +32,7 @@ $ insac --help
     add:seed [options] <modelName>         Adiciona un archivo de tipo seed en base a un modelo.
     add:resource [options] <path>          Adiciona un recurso.
     add:route [options] <key>              Adiciona una ruta sobre un recurso existente.
+    add:config [options] <type>            Adiciona un archivo de configuración (database, server, logger, response, apidoc, ecosystem, <moduleName>).
     gen:resource [options] <resourceName>  Genera un recurso (CRUD) con el código autogenerado.
 
   Ejemplos:

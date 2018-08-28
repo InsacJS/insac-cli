@@ -11,7 +11,6 @@ docs
 # Archivos de configuración
 *.config.js
 *.config.json
-*.pem
 
 # Archivos de base de datos de SQLite
 *.sqlite

@@ -4,10 +4,10 @@ Expone servicios que pueden ser consumidos por una apliación front-end.
 
 ## 2. Requerimientos
 
-| Herramienta  | Versión          | Descripción                            |
-|--------------|------------------|----------------------------------------|
-| `NodeJS`     | 8.0.0 o superior | Entorno de programación de JavaScript. |
-| `PostgreSQL` | 9.4              | Gestor de base de datos.               |
+| Herramienta  | Versión        | Descripción                            |
+| ------------ | -------------- | -------------------------------------- |
+| `NodeJS`     | 8.0 o superior | Entorno de programación de JavaScript. |
+| `PostgreSQL` | 9.4            | Gestor de base de datos.               |
 
 ## 3. Instalación
 
@@ -34,9 +34,6 @@ $ cp ./src/config/server.config.js.example ./src/config/server.config.js
 
 # DATABASE
 $ cp ./src/config/database.config.js.example ./src/config/database.config.js
-
-# LOGGER
-$ cp ./src/config/logger.config.js.example ./src/config/logger.config.js
 ```
 
 ### 3.3 Creación de la Base de Datos
@@ -59,16 +56,6 @@ yarn start
 
 # Entorno de producción
 yarn start-production
-```
-
-Para desplegar la aplicación de manera contínua, puede utilizar [PM2](http://pm2.keymetrics.io/), para hacer esto, crear el archivo `ecosystem.config.json` en base al archivo `ecosystem.config.json.example`, modificar los valores si es necesario y ejecutarlo:
-
-```bash
-# ECOSYSTEM
-$ cp ./ecosystem.config.json.example ./ecosystem.config.json
-
-# Despliegue continuo
-$ pm2 start ecosystem.config.json
 ```
 
 ## 5. Pruebas unitarias y de integración

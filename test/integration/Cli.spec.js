@@ -31,8 +31,6 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('app/src/config/database.config.js.example')
       verifyFile('app/src/config/server.config.js')
       verifyFile('app/src/config/server.config.js.example')
-      verifyFile('app/src/config/logger.config.js')
-      verifyFile('app/src/config/logger.config.js.example')
       verifyFile('app/src/app.js', `// <!-- [CLI] - [MODULE] --!> //`, true)
       verifyDir('app/test')
       verifyFile('app/.eslintrc.js')
@@ -217,6 +215,63 @@ describe('\n - Prueba de comandos\n', () => {
       verifyFile('src/modules/API/resources/abcd/abcd.route.js', `description : 'ABCD'`, true)
     })
 
+    it('Comando add:config [logger]', async () => {
+      let result = await execute(`add:config logger`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('src/config/logger.config.js')
+      verifyFile('src/config/logger.config.js.example')
+    })
+
+    it('Comando add:config [logger] --force', async () => {
+      let result = await execute(`add:config logger`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el archivo 'logger.config.js'`)).to.equal(true)
+      result = await execute(`add:config logger --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('src/config/logger.config.js')
+      verifyFile('src/config/logger.config.js.example')
+    })
+
+    it('Comando add:config [ecosystem]', async () => {
+      let result = await execute(`add:config ecosystem`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('ecosystem.config.json')
+      verifyFile('ecosystem.config.json.example')
+    })
+
+    it('Comando add:config [ecosystem] --force', async () => {
+      let result = await execute(`add:config ecosystem`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el archivo 'ecosystem.config.json'`)).to.equal(true)
+      result = await execute(`add:config ecosystem --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('ecosystem.config.json')
+      verifyFile('ecosystem.config.json.example')
+    })
+
+    it('Comando add:config [moduleName]', async () => {
+      let result = await execute(`add:config api`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('src/modules/API/config/api.config.js')
+      verifyFile('src/modules/API/config/api.config.js.example')
+    })
+
+    it('Comando add:config [modelName] --force', async () => {
+      let result = await execute(`add:config api`)
+      // console.log(result)
+      expect(result.includes(`Ya existe el archivo 'api.config.js'`)).to.equal(true)
+      result = await execute(`add:config api --force`)
+      // console.log(result)
+      expect(result.includes('adicionado exitosamente')).to.equal(true)
+      verifyFile('src/modules/API/config/api.config.js')
+      verifyFile('src/modules/API/config/api.config.js.example')
+    })
+
     it('Comando gen:resource --model', async () => {
       const result = await execute(`gen:resource api/v2/libros --model libro`)
       // console.log(result)
@@ -310,7 +365,7 @@ function verifyFile (filePath, content, result = true) {
 function updateDatabaseConfig () {
   const DATABASE_CONFIG_PATH = path.resolve(workspacePath, 'src/config/database.config.js')
   let content = util.readFile(DATABASE_CONFIG_PATH)
-  content = content.replace('process.env.DB_PORT || 5432', 'process.env.DB_PORT || 54324')
+  content = content.replace('port     : 5432', 'port     : 54324')
   util.writeFile(DATABASE_CONFIG_PATH, content)
   delete require.cache[DATABASE_CONFIG_PATH]
 }
