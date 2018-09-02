@@ -10,7 +10,7 @@
     "test": "npm run test-unit && npm run test-integration",
     "test-unit": "./node_modules/.bin/mocha --recursive \"./test/unit/*.spec.js\"",
     "test-integration": "./node_modules/.bin/mocha --recursive \"./test/integration/*.spec.js\"",
-    "lint": "./node_modules/.bin/eslint ./lib ./example/app/src ./test"
+    "lint": "./node_modules/.bin/eslint ./lib ./test"
   },
   "bin": {
     "insac": "insac.js"
@@ -34,7 +34,7 @@
   "homepage": "https://github.com/insacjs/insac-cli#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^5.4.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^7.0.1",

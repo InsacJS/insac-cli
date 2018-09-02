@@ -5,4 +5,7 @@
 /docs
 /esdoc
 /assets
-/temp
+*.sqlite
+.esdoc.json
+.eslintignore
+.eslintrc.js

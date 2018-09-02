@@ -1,19 +1,19 @@
 # Carpetas temporales
-temp
-tmp
+/temp
+/tmp
 *.temp
 *.tmp
 
 # Carpetas autogeneradas
 /test/integration/app
-public
-docs
+/public
+/docs
 
-# Archivos de base de datos de SQLite
+# Archivos SQLite
 *.sqlite
 
 # Logs
-logs
+/logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -26,7 +26,7 @@ pids
 *.pid.lock
 
 # Directorios de dependencias
-node_modules/
+/node_modules
 
 # caché NPM
 .npm

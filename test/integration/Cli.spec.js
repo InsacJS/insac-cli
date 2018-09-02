@@ -323,7 +323,6 @@ describe('\n - Prueba de comandos\n', () => {
     })
 
     it('Prueba la instalación del servicio', async () => {
-      updateDatabaseConfig()
       clearEnv()
       process.env.LISTEN = 'false'
       const result = await util.cmd(`npm run setup`, workspacePath).catch(e => {
@@ -333,7 +332,6 @@ describe('\n - Prueba de comandos\n', () => {
     })
 
     it('Prueba la ejecución del servicio', async () => {
-      updateDatabaseConfig()
       clearEnv()
       process.env.LISTEN = 'false'
       const result = await util.cmd(`npm run start`, workspacePath).catch(e => {
@@ -360,14 +358,6 @@ function verifyFile (filePath, content, result = true) {
     const FILE_CONTENT = util.readFile(FILE_PATH)
     expect(FILE_CONTENT.includes(content)).to.equals(result)
   }
-}
-
-function updateDatabaseConfig () {
-  const DATABASE_CONFIG_PATH = path.resolve(workspacePath, 'src/config/database.config.js')
-  let content = util.readFile(DATABASE_CONFIG_PATH)
-  content = content.replace('port     : 5432', 'port     : 54324')
-  util.writeFile(DATABASE_CONFIG_PATH, content)
-  delete require.cache[DATABASE_CONFIG_PATH]
 }
 
 function clearEnv () {
